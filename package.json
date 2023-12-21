@@ -13,5 +13,7 @@
   "scripts": {
     "postinstall": "cp -nr node_modules/dev-ui/node_modules ."
   },
-  "dependencies": {}
+  "dependencies": {
+    "extend": "^3.0.2"
+  }
 }
