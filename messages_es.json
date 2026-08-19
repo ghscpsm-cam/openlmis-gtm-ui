@@ -1,0 +1,16 @@
+{
+  "stockIssueCreation.sohPacks": "Existencia en mano",
+  "stockIssueCreation.quantityPacks": "Cantidad",
+  "stockIssueCreation.totalQuantityInDoses": "Cantidad total",
+  "stockReceiveCreation.sohPacks": "Existencia en mano",
+  "stockReceiveCreation.quantityPacks": "Cantidad",
+  "stockReceiveCreation.totalQuantityInDoses": "Cantidad total",
+  "stockAdjustmentCreation.sohPacks": "Existencia en mano",
+  "stockAdjustmentCreation.quantityPacks": "Cantidad",
+  "stockAdjustmentCreation.totalQuantityInDoses": "Cantidad total",
+  "stockAddProductsModal.currentStockInPacks": "Existencia actual",
+  "stockCardSummaryList.stockOnHandInPacks": "Existencia en mano",
+  "openlmisInputDosesPacks.Doses": "Dosis",
+  "openlmisInputDosesPacks.DosesBracket": " dosis )",
+  "openlmisQuantityUnitToggle.doses": "Dosis"
+}
