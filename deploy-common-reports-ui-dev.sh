@@ -29,7 +29,7 @@ echo "Building and publishing $TARGET_IMAGE"
 ssh "$REMOTE" "docker build --build-arg BASE_IMAGE='$BASE_IMAGE' -t '$TARGET_IMAGE' '$REMOTE_WORK_DIR' >/dev/null && docker push '$TARGET_IMAGE'"
 
 echo "Activating the versioned image through the platform override"
-ssh "$REMOTE" "cd /opt/openlmis-gua-platform && sed -i -E 's#^REFERENCE_UI_IMAGE=.*#REFERENCE_UI_IMAGE=$TARGET_IMAGE#' env/dev.env && ./platform up dev"
+ssh "$REMOTE" "cd /opt/openlmis-gua-platform && if grep -q '^REFERENCE_UI_IMAGE=' env/dev.env; then sed -i -E 's#^REFERENCE_UI_IMAGE=.*#REFERENCE_UI_IMAGE=$TARGET_IMAGE#' env/dev.env; else printf '\nREFERENCE_UI_IMAGE=%s\n' '$TARGET_IMAGE' >> env/dev.env; fi && ./platform up dev"
 
 ssh "$REMOTE" "docker exec '$CONTAINER' sh -lc 'grep -q \"Tarjeta de Almacén para\" /usr/share/nginx/html/openlmis.js && grep -q \"Reportes DABMA\" /usr/share/nginx/html/openlmis.js && grep -q \"commonCategoryName\" /usr/share/nginx/html/openlmis.js'"
 
