@@ -1,0 +1,4 @@
+ARG BASE_IMAGE=ghcr.io/ghscpsm-cam/openlmis-gtm-ui:8.0.1-gtm.4
+FROM ${BASE_IMAGE}
+
+COPY openlmis.js /usr/share/nginx/html/openlmis.js

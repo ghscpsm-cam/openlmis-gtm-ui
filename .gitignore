@@ -13,3 +13,4 @@ bower_components
 .tmp
 .sonar
 .vscode/
+.DS_Store
