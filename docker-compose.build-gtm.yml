@@ -1,0 +1,62 @@
+# Construcción de la UI de Guatemala con Grunt (dev-ui oficial + piezas GTM).
+#   ../openlmis-gtm-dev-ui              -> solo tasks/messages.js (traducciones GTM reemplazan a las de módulos)
+#   ../openlmis-gtm-stockmanagement-ui  -> src/ con la corrección de vencimientos y traducciones
+# Módulos y versiones: los de gtm.1-gtm.4 (19/08/2026), fijados por digest a la construcción
+# validada el 27/09/2026 (mismas 2737 traducciones y funciones que gtm.5). Las etiquetas
+# -SNAPSHOT pueden cambiar sin aviso; el digest garantiza que siempre se use la misma imagen.
+services:
+  reference-ui:
+    image: openlmis/dev-ui:9.0.9-SNAPSHOT@sha256:0745eb7ba852e20207601cbceefafd693031e45227720ed77d58e58b135b4403
+    working_dir: /app
+    environment:
+      TRANSIFEX_PUSH: "false"
+      TRANSIFEX_PULL: "false"
+    volumes:
+      - '.:/app'
+      - '../openlmis-gtm-dev-ui/tasks/messages.js:/dev-ui/tasks/messages.js:ro'
+      - '../openlmis-gtm-stockmanagement-ui/src:/openlmis-stockmanagement-ui/src:ro'
+    volumes_from:
+      - auth-ui
+      - fulfillment-ui
+      - referencedata-ui
+      - requisition-ui
+      - report-ui
+      - stockmanagement-ui
+      - cce-ui
+      - ui-components
+      - ui-layout
+      - offline-ui
+      - one-network-integration-ui
+  auth-ui:
+    image: openlmis/auth-ui:6.2.17-SNAPSHOT@sha256:c95346e7d57647afbd2296437189a554cd390f572555ba7ea245c4f7f154cf48
+    volumes: ['/openlmis-auth-ui']
+  fulfillment-ui:
+    image: openlmis/fulfillment-ui:6.1.8-SNAPSHOT@sha256:e330272f26726f647dcb32a50806c7f4a70887024b3bca36eb58cc1b10455d55
+    volumes: ['/openlmis-fulfillment-ui']
+  referencedata-ui:
+    image: openlmis/referencedata-ui:5.6.18-SNAPSHOT@sha256:1530ed39b3c11e6bd87372af8239e1cd0c26e787f339beb7504216edad3c0ed9
+    volumes: ['/openlmis-referencedata-ui']
+  report-ui:
+    image: openlmis/report-ui:5.2.16-SNAPSHOT@sha256:5dd2c9c4eaba549d1f54b7c7f3ad06a899b84e8aecfcafbe4b9793e9a889c30a
+    volumes: ['/openlmis-report-ui']
+  requisition-ui:
+    image: openlmis/requisition-ui:7.0.16-SNAPSHOT@sha256:fb60b66d897a7c97d6199905ad9fc18382ec2b0e9ba4d63894636c24a0e2cfb9
+    volumes: ['/openlmis-requisition-ui']
+  stockmanagement-ui:
+    image: openlmis/stockmanagement-ui:2.1.10-SNAPSHOT@sha256:a2536e37d3a4c15af613f1410b72debaba03d80387dd40cdb40be7164d6d74a3
+    volumes: ['/openlmis-stockmanagement-ui']
+  cce-ui:
+    image: openlmis/cce-ui:1.1.10-SNAPSHOT@sha256:1ea55362a3557d22f89aa0e4825e4dd8dc789d4e42bf3bec3d9061d80adabd00
+    volumes: ['/openlmis-cce-ui']
+  ui-components:
+    image: openlmis/ui-components:7.2.15-SNAPSHOT@sha256:6b79e1f440dc248d16b626d418a6d522381f409dd1550cbcc9f181e7571f7b2f
+    volumes: ['/openlmis-ui-components']
+  ui-layout:
+    image: openlmis/ui-layout:5.2.10-SNAPSHOT@sha256:093e94beac412f1ce180192b0c76718eb3622c89497dd8c1d64d9ecaf38a7ad0
+    volumes: ['/openlmis-ui-layout']
+  offline-ui:
+    image: openlmis/offline-ui:1.0.9-SNAPSHOT@sha256:6a1ec6cbdf285accc6a060ce5945658156d60ffd41926795996ffbb8cebbc051
+    volumes: ['/openlmis-offline-ui']
+  one-network-integration-ui:
+    image: openlmis/one-network-integration-ui:0.0.8-SNAPSHOT@sha256:4830c358493c650a3ca3985376c223a592874b378abc8f2e8a843e8a832c2e80
+    volumes: ['/one-network-integration-ui']
